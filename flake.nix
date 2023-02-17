@@ -11,11 +11,11 @@
   };
    # add the inputs declared above to the argument attribute set
   outputs = { self, nixpkgs, home-manager, darwin }: {
-    darwinConfigurations.Samuels-MacBook-Pro = darwin.lib.darwinSystem {
+    darwinConfigurations.stratos = darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [ 
         home-manager.darwinModules.home-manager
-        ./hosts/samuelmacbook/default.nix 
+        ./hosts/stratos/default.nix 
       ];
     };
   };

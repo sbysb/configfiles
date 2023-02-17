@@ -4,6 +4,7 @@
   #nix.package = pkgs.nixFlakes;
 
   programs.zsh.enable = true;
+
   users.users.samuel = {
     name = "samuel";
     home = "/Users/samuel";
@@ -24,24 +25,44 @@
       stateVersion = "22.05";
       username = "samuel";
       homeDirectory = "/Users/samuel";
+
+      packages = with pkgs; [
+        iosevka
+      ];
     };
 
+    fonts.fontconfig.enable = true;
+
     programs.bat.enable = true;
+
+    programs.helix = {
+      enable = true;
+      settings = {
+        theme = "gruvbox";
+        editor = {
+          line-number = "relative";
+          mouse = false;
+          indent-guides = {
+            render = true;
+          };
+        };
+      };
+    };
 
     programs.neovim = {
       enable = true;
       vimAlias = true;
       viAlias = true;
       plugins = with pkgs.vimPlugins; [
-	catppuccin-nvim
-	indent-blankline-nvim
-	nvim-cmp
-	vim-nix
+        catppuccin-nvim
+        indent-blankline-nvim
+        nvim-cmp
+        vim-nix
         vim-sensible
       ];
 
       extraConfig = ''
-	colorscheme catppuccin
+       	colorscheme catppuccin
         set number relativenumber
       '';
     };
